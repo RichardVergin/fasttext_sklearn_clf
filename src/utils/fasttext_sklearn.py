@@ -1,4 +1,4 @@
-import fasttext_sklearn
+import fasttext
 from sklearn.base import BaseEstimator
 import numpy as np
 import pandas as pd
@@ -9,7 +9,7 @@ class FastTextSklearnEstimator(BaseEstimator):
     def __init__(
         self,
         model=None,
-        k=6,
+        k=3,
         lr=.01,
         lrUpdateRate=100,
         dim=100,
@@ -21,7 +21,7 @@ class FastTextSklearnEstimator(BaseEstimator):
         neg=5,
         loss='softmax',
         thread=16,
-        verbose=1
+        verbose=0
     ):
         super().__init__()
         self.k = k
@@ -36,7 +36,7 @@ class FastTextSklearnEstimator(BaseEstimator):
         self.neg = neg
         self.loss = loss
         self.thread = thread
-        self.verbose = 1
+        self.verbose = verbose
         self.model = model
 
     def get_params(self, deep=True):

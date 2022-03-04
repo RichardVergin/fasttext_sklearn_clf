@@ -13,11 +13,11 @@ def prepare_trainingsset(X, y, col_text):
             X.label == i, col_text + '_prepared'
         ] = '__label__' + str(i) + ' ' + X[col_text]
 
-    return X[[col_text + '_prepared']]
+    return X[col_text + '_prepared']
 
 
-def store_txt_for_fasttext(df, output_path):
-    df.to_csv(
+def store_txt_for_fasttext(series, output_path):
+    series.to_csv(
         output_path,
         index=False,
         sep=' ',
@@ -41,11 +41,11 @@ def main():
     )
 
     store_txt_for_fasttext(
-        df=X_train,
+        series=X_train,
         output_path='../../data/train.txt'
     )
     store_txt_for_fasttext(
-        df=X_test,
+        series=X_test,
         output_path='../../data/test.txt'
     )
 

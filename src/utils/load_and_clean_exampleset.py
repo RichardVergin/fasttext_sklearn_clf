@@ -49,7 +49,8 @@ def main():
 
     y_train = pd.Series(
         data=twenty_train.target,
-        index=X_train.index
+        index=X_train.index,
+        name='label'
     )
 
     # load and clean testset
@@ -68,14 +69,15 @@ def main():
 
     y_test = pd.Series(
         data=twenty_test.target,
-        index=X_test.index
+        index=X_test.index,
+        name='label'
     )
 
     # save
-    X_train.to_csv('../data/X_train.csv', index=False)
-    X_test.to_csv('../data/X_test.csv', index=False)
-    y_train.to_csv('../data/y_train.csv', index=False)
-    y_test.to_csv('../data/y_test.csv', index=False)
+    X_train.to_csv(r'../../data/X_train.csv', index=True)
+    X_test.to_csv(r'../../data/X_test.csv', index=True)
+    y_train.to_csv(r'../../data/y_train.csv', index=False, header=True)
+    y_test.to_csv(r'../../data/y_test.csv', index=False, header=True)
 
 
 if __name__ == '__main__':
