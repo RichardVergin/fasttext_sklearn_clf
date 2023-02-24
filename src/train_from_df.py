@@ -6,7 +6,7 @@ from utils.prepare import prepare_trainingsset
 
 
 distributions = {
-    'epoch': [5, 10,],
+    'epoch': [5, 10],
     'lr': [0.01, 0.1],
     'lrUpdateRate': [50, 100],
     'wordNgrams': [1, 3, 5, 7],
@@ -14,13 +14,12 @@ distributions = {
     'ws': [3, 5, 7],
     'loss': ['ns', 'hs', 'softmax']
 }
-n_iter = 2
+n_iter = 5
 scorer = make_scorer(f1_score, average='micro')
-scoring = 'f1_micro'
 cv = 10
 
 
-def main(distributions, n_iter, scoring, cv):
+def main(distributions, n_iter, scorer, cv):
     # load data
     X_train = pd.read_csv('../data/X_train.csv')
     y_train = pd.read_csv('../data/y_train.csv')
@@ -74,6 +73,6 @@ if __name__ == '__main__':
     main(
         distributions=distributions,
         n_iter=n_iter,
-        scoring=scoring,
+        scorer=scorer,
         cv=cv
     )

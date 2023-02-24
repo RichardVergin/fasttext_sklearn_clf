@@ -29,6 +29,5 @@ def main():
     return y_hat, probas
 
 
-
 if __name__ == '__main__':
     main()

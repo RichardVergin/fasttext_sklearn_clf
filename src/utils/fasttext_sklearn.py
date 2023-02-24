@@ -108,12 +108,24 @@ class FastTextSklearnEstimator(BaseEstimator):
 
         # extract for each class (0 to n)
         for k in range(self.k):
+
+            # check current filling of probabilites
+            curr_shape = np.shape(probabilities)
+
             for label in list(prediction_fasttext[0]):
                 if str(k) in label:
                     # get index of tuples containing the labels
                     index_k = list(prediction_fasttext[0]).index(label)
                     prob_k = list(prediction_fasttext[1])[index_k]
                     probabilities = np.append(probabilities, np.array(prob_k))
+                else:
+                    pass
+
+            # add 0.0 if label was not in curr batch
+            if np.shape(probabilities) == curr_shape:
+                probabilities = np.append(probabilities, 0.0)
+            else:
+                pass
 
         return probabilities
 
